@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ShortenForm from "./components/ShortenForm";
 import UrlList from "./components/UrlList";
-import UrlStats from "./components/UrlStats";
 
 export default function App() {
   const [refresh, setRefresh] = useState(0);
@@ -15,7 +14,6 @@ export default function App() {
       <h1 className="text-3xl font-bold mb-6">URL Shortener</h1>
       <ShortenForm onShortened={onShortened} />
       <UrlList refreshTrigger={refresh} />
-      <UrlStats />
     </div>
   );
 }
