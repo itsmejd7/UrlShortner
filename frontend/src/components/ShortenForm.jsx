@@ -5,12 +5,14 @@ export default function ShortenForm({ onShortened }) {
   const [shortUrl, setShortUrl] = useState("");
   const [error, setError] = useState("");
 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setShortUrl("");
     try {
-      const res = await fetch("http://localhost:5000/api/shorten", {
+      const res = await fetch(`${BASE_URL}/api/shorten`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ longurl: longUrl }),
@@ -22,7 +24,7 @@ export default function ShortenForm({ onShortened }) {
       }
       setShortUrl(data.shortURL);
       setLongUrl("");
-      if(onShortened) onShortened(); // notify parent to refresh list
+      if(onShortened) onShortened();
     } catch {
       setError("Server error");
     }

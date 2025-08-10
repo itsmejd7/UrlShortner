@@ -6,7 +6,7 @@ export default function App() {
   const [refresh, setRefresh] = useState(0);
 
   const onShortened = () => {
-    setRefresh((r) => r + 1); // trigger list refresh
+    setRefresh((r) => r + 1);
   };
 
   return (

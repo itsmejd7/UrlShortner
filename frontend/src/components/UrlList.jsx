@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 export default function UrlList({ refreshTrigger }) {
   const [urls, setUrls] = useState([]);
   const [error, setError] = useState("");
-  const [copied, setCopied] = useState(null); // keep track which URL copied
+  const [copied, setCopied] = useState(null);
 
   const fetchUrls = () => {
-    fetch("http://localhost:5000/api/all")
+    fetch(`${BASE_URL}/api/all`)
       .then((res) => res.json())
       .then((data) => setUrls(data))
       .catch(() => setError("Failed to load URLs"));
@@ -17,7 +19,7 @@ export default function UrlList({ refreshTrigger }) {
   }, [refreshTrigger]);
 
   const handleDelete = async (shortcode) => {
-    await fetch(`http://localhost:5000/api/delete/${shortcode}`, {
+    await fetch(`${BASE_URL}/api/delete/${shortcode}`, {
       method: "DELETE",
     });
     fetchUrls();
@@ -37,7 +39,7 @@ export default function UrlList({ refreshTrigger }) {
   return (
     <ul className="space-y-2">
       {urls.map(({ shortcode, longurl, visitcount }) => {
-        const shortURL = `http://localhost:5000/${shortcode}`;
+        const shortURL = `${BASE_URL}/${shortcode}`;
         return (
           <li key={shortcode} className="border p-2 rounded flex justify-between items-center">
             <div>
