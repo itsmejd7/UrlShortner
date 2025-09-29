@@ -9,7 +9,7 @@ A simple URL shortener (frontend + backend). This repo contains a basic web app 
 * `backend/` — Node.js/Express API that creates and resolves short URLs.
 * `frontend/` — Simple web UI (React or plain JS) to create and use short links.
 
----
+--
 
 ## Features
 
